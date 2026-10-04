@@ -1,0 +1,4 @@
+const fields = ['full_name', 'employer', 'job_title', 'start_date', 'end_date', 'employment_type', 'responsibilities'];
+const schema = { type: 'OBJECT', properties: Object.fromEntries(fields.map((field) => [field, field === 'responsibilities' ? { type: 'ARRAY', items: { type: 'STRING' } } : { type: 'STRING', nullable: true }])), required: fields };
+
+export default { label: 'Employment Document', category: 'Professional Profile', fields, schema, prompt: `Extract only information visibly present in this employment document. Do not infer or guess. Return null for missing scalar values, [] for missing lists, and JSON only.` };

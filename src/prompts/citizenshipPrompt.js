@@ -1,0 +1,5 @@
+const fields = ['full_name', 'first_name', 'middle_name', 'last_name', 'date_of_birth', 'gender', 'nationality', 'citizenship_number', 'father_name', 'mother_name', 'spouse_name', 'permanent_address', 'province', 'district', 'municipality', 'ward', 'issue_date', 'issuing_authority'];
+const arrayFields = new Set();
+const schema = { type: 'OBJECT', properties: Object.fromEntries(fields.map((field) => [field, { type: 'STRING', nullable: true }])), required: fields };
+
+export default { label: 'Citizenship / National ID', category: 'Identity Documents', fields, arrayFields, schema, prompt: `Extract only information visibly present in this citizenship or national ID document. Do not infer or guess. Return null for missing values, normalize dates only when unambiguous, and return JSON only. Do not extract passport fields unless explicitly visible.` };

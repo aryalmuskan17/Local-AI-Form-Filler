@@ -1,0 +1,4 @@
+const fields = ['document_type', 'fields'];
+const schema = { type: 'OBJECT', properties: { document_type: { type: 'STRING', nullable: true }, fields: { type: 'ARRAY', items: { type: 'OBJECT', properties: { name: { type: 'STRING' }, value: { type: 'STRING' }, confidence: { type: 'NUMBER' } }, required: ['name', 'value', 'confidence'] } } }, required: fields };
+
+export default { label: 'Other', category: 'Custom Profile', fields, schema, prompt: `Extract only information visibly present in this document. Do not infer or guess. For unknown documents, return document_type and a fields array of visible name, value, and confidence entries. Return null or an empty array when information is not visible. Return JSON only.` };
